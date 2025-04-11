@@ -1,0 +1,57 @@
+.categoryGrid {
+    justify-content: center;
+     display: flex;
+     flex-wrap: nowrap;
+     overflow-x: auto;
+     gap: 20px;
+     padding: 20px;
+     scroll-snap-type: x mandatory;
+   
+     .categoryCard {
+       flex: 0 0 auto;
+       width: 160px;
+       height: 160px;
+       background-color: #fff;
+       border-radius: 16px;
+       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       scroll-snap-align: start;
+       text-align: center;
+       transition: all 0.3s ease;
+       cursor: pointer;
+   
+       img {
+         width: 48px;
+         height: 48px;
+         margin-bottom: 12px;
+       }
+   
+       span {
+         font-size: 14px;
+         font-weight: 600;
+       }
+   
+       &:hover {
+         transform: translateY(-5px);
+         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+       }
+     }
+   
+     // Mobile view
+     @media (max-width: 768px) {
+       flex-wrap: wrap;
+       justify-content: center;
+       overflow-x: hidden;
+       gap: 16px;
+   
+       .categoryCard {
+         width: 30%;
+         min-width: 100px;
+         height: 140px;
+       }
+     }
+   }
+   

@@ -1,0 +1,136 @@
+.footer {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  margin: 50px 0px;
+  background-color: #000000;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .container {
+    width: 1400px;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap; // Allow wrapping for smaller screens
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        h2 {
+          font-size: 16px;
+          color: #ffffff;
+          font-weight: bold;
+        }
+        span {
+          font-weight: 300;
+        }
+      }
+    }
+
+    hr {
+      margin: 50px 0px;
+      height: 0;
+      border: 1px solid #ebe9e9;
+    }
+
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap; // Allow wrapping for smaller screens
+
+      .left {
+        width: max-content;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        span {
+          font-size: 13px;
+          white-space: nowrap;
+        }
+      }
+
+      .right {
+        width: max-content;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap; // Allow wrapping for smaller screens
+
+        .social {
+          display: flex;
+          gap: 20px;
+        }
+
+        .right-link{
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+        .link {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+    }
+  }
+
+  // Responsive styles
+  @media (max-width: 1200px) {
+    .container {
+      width: 100%;
+      padding: 0 20px; // Add padding for smaller screens
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      .top {
+        flex-direction: column; // Stack items vertically
+        align-items: left;
+        gap: 30px;
+      }
+  
+      .bottom {
+        flex-direction: column; // Stack items vertically
+        align-items: center;
+        gap: 20px;
+
+        .left{
+          padding-left: 20px;
+        }
+        .right {
+          justify-content: center;
+          
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      .top .item h2 {
+        font-size: 14px; // Reduce font size for smaller screens
+      }
+
+      .right-link {
+        flex-direction: column; // Stack links vertically
+        gap: 10px; // Add spacing between links
+        width: 100%; // Take full width
+      }
+    
+      .bottom .left span {
+        font-size: 12px; // Reduce font size for smaller screens
+      }
+    }
+  }
+}

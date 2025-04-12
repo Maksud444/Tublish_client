@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #9381ff;
+  background-color: rgb(242, 148, 46);
   color: white;
   position: sticky;
   top: 0;
@@ -10,7 +10,7 @@
   transition: 0.5s all ease;
 
   &.active {
-    background-color: white;
+    background-color: rgb(242, 148, 46);
     color: black;
 
     button {
@@ -18,6 +18,28 @@
       color: #220901 !important;
       border: 1px solid #b8b8ff !important;
     }
+  }
+
+  .humlink{
+    color: #000000;
+    padding: 20px;
+    
+
+   link {
+     
+    gap: 10px; 
+    margin: 10px;
+   }
+
+   button {
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: inherit;
+    cursor: pointer;
+   }
   }
 
   .container {
@@ -125,7 +147,7 @@
         position: absolute;
         top: 70px;
         right: 0;
-        background-color: #9381ff;
+        background-color: rgb(242, 148, 46);
         width: 100%;
         flex-direction: column;
         align-items: flex-start;
@@ -154,7 +176,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    color: gray;
+    color: rgb(255, 255, 255);
     font-weight: 300;
     font-family: "Montserrat", sans-serif;
 

@@ -43,9 +43,16 @@ function Navbar() {
           </Link>
         </div>
         <div className="hamburger" onClick={() => setOpen(!open)}>
+         <div className="humlink">
+         <span>  <Link to="/login" className="link">
+            Sign in
+          </Link>
+          </span>
+          <span> <Link className="link" to="/register">
+            <button>JOIN</button>
+          </Link></span>
           <span></span>
-          <span></span>
-          <span></span>
+         </div>
         </div>
         <div className={`links ${open ? "open" : ""}`}></div>
         <div className="links">

@@ -1,11 +1,11 @@
 .featured {
   position: relative;
   color: white;
-  background-color: #9381FF;
+  background-color: rgb(242, 148, 46);
   text-align: center;
 
   .overlay {
-    background: linear-gradient(to bottom, #004225, #009150);
+    background: linear-gradient(to bottom,rgb(242, 148, 46));
     padding: 80px 20px;
     position: relative;
     z-index: 2;
@@ -107,7 +107,7 @@
 
   @media (max-width: 768px) {
     .overlay {
-      background: linear-gradient(to bottom, #9381FF, #009150);
+      background: linear-gradient(to bottom, rgb(242, 148, 46));
       padding: 60px 15px;
     }
 

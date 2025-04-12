@@ -12,8 +12,17 @@
     color: rgb(0, 0, 0);
     font-weight: 500;
 
+
+    @media (max-width: 768px) {
+    // Optional: use full width on mobile
+    margin-bottom: 30px;
+      flex-direction: column;
+      align-items: center; // Optional: center items vertically
+      
+    }
+
     img{
-      height: 50px;
+      height: 30px;
       object-fit: contain;
     }
   }

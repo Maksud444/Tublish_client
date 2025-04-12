@@ -7,7 +7,7 @@ const TrustedBy = () => {
       <div className="container">
         <span >Trusted by:</span>
         <img src="https://www.paytusker.com/images/logo.png" alt="" />
-        <img src="https://Tupublish.com/images/logo.png" alt="" />
+        <img src="https://chaintusker.com/images/logo.png" alt="" />
         <img src="https://lawhelpzone.com/images/logo.webp" alt="" />
       </div>
     </div>

@@ -58,7 +58,7 @@ console.log(data,"gig data")
                   <div className="stars">
                     {Array(Math.round(data.totalStars / data.starNumber))
                       .fill()
-                      .map((item, i) => (
+                      ?.map((item, i) => (
                         <img src="/img/star.png" alt="" key={i} />
                       ))}
                     <span>{Math.round(data.totalStars / data.starNumber)}</span>
@@ -84,7 +84,7 @@ console.log(data,"gig data")
                       <div className="stars">
                         {Array(Math.round(data.totalStars / data.starNumber))
                           .fill()
-                          .map((item, i) => (
+                          ?.map((item, i) => (
                             <img src="/img/star.png" alt="" key={i} />
                           ))}
                         <span>
@@ -142,7 +142,7 @@ console.log(data,"gig data")
               </div>
             </div>
             <div className="features">
-              {data.features.map((feature) => (
+              {data?.features?.map((feature) => (
                 <div className="item" key={feature}>
                   <img src="/img/greencheck.png" alt="" />
                   <span>{feature}</span>

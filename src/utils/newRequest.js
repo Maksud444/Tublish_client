@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const newRequest = axios.create({
-  baseURL: "https://testingproject-bay.vercel.app/api", 
+  baseURL: "https://tupublish-server-main.vercel.app/api", 
   // baseURL: "https://testingproject-bay.vercel.app/api", 
   withCredentials: true, // Include cookies if needed
 });

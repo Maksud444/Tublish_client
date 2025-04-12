@@ -2,11 +2,21 @@
   display: flex;
   justify-content: center;
   padding: 100px 0px;
-  
   .container {
-    width: 1400px;
-    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // 3 equal columns
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+  
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr; // Stack items in 1 column on mobile
+    }
   }
+  
+  
 
   .carousel-initialized {
     position: static;

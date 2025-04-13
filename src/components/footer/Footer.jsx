@@ -34,8 +34,8 @@ function Footer() {
             <h2>Support</h2>
             <span>Help & Support</span>
             <span>Trust & Safety</span>
-            <span>Selling on Tupublishr</span>
-            <span>Buying on Tupublishr</span>
+            <span>Selling on Tupublish</span>
+            <span>Buying on Tupublish</span>
           </div>
           <div className="item">
             <h2>Community</h2>
@@ -53,14 +53,14 @@ function Footer() {
           </div>
           <div className="item">
             <h2>More From Tupublish</h2>
-            <span>Tupublishr Business</span>
-            <span>Tupublishr Pro</span>
-            <span>Tupublishr Logo Maker</span>
-            <span>Tupublishr Guides</span>
+            <span>Tupublish Business</span>
+            <span>Tupublish Pro</span>
+            <span>Tupublish Logo Maker</span>
+            <span>Tupublish Guides</span>
             <span>Get Inspired</span>
-            <span>Tupublishr Select</span>
+            <span>Tupublish Select</span>
             <span>ClearVoice</span>
-            <span>Tupublishr Workspace</span>
+            <span>Tupublish Workspace</span>
             <span>Learn</span>
             <span>Working Not Working</span>
           </div>
@@ -68,8 +68,8 @@ function Footer() {
         <hr />
         <div className="bottom">
           <div className="left">
-            <h2>Tupublishr</h2>
-            <span>© Tupublishr International Ltd. 2025</span>
+            <h2>Tupublish</h2>
+            <span>© Tupublish International Ltd. 2025</span>
           </div>
           <div className="right">
             <div className="social">

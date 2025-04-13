@@ -194,7 +194,7 @@ function Home() {
         <div className="container">
           <div className="item">
             <h1>
-              Tupublishr <i>business</i>
+              Tupublish <i>business</i>
             </h1>
             <h1>
               A business solution designed for <i>teams</i>
@@ -217,7 +217,7 @@ function Home() {
               <img src="./img/check.png" alt="" />
               Manage teamwork and boost productivity with one powerful workspace
             </div>
-            <button>Explore Tupublishr Business</button>
+            <button>Explore Tupublish Business</button>
           </div>
           <div className="item">
           <video src="./img/video.mp4" controls />

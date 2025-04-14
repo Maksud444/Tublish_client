@@ -55,7 +55,7 @@ function Register() {
       navigate("/login");
     } catch (err) {
       console.error("Registration Error:", err.response?.data || err.message);
-      alert(err.response?.data || "Registration failed. Please try again.");
+      alert(typeof err.response?.data === "string" ? err.response.data : "Registration failed. Please try again.");
     }
   };
   return (

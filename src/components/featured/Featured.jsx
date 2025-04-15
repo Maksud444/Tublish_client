@@ -13,7 +13,7 @@ function Featured() {
     <div className="featured">
     <div className="overlay">
       <div className="container">
-        <h1 className="title">Find the perfect freelance services for your business</h1>
+        <h1 className="title">Freelancing marketplace for Africa</h1>
         <div className="searchBox">
           <input
             type="text"

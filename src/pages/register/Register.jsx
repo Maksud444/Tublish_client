@@ -115,7 +115,7 @@ function Register() {
             rows="10"
             onChange={handleChange}
           ></textarea>
-          <button type="submit">Register</button>
+          <button type="submit">Register Now</button>
         </div>
       </form>
     </div>

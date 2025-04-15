@@ -88,7 +88,7 @@ function Register() {
             placeholder="Usa"
             onChange={handleChange}
           />
-          <button type="submit">Register</button>
+          
         </div>
         <div className="right">
           <h1>I want to become a seller</h1>
@@ -115,6 +115,7 @@ function Register() {
             rows="10"
             onChange={handleChange}
           ></textarea>
+          <button type="submit">Register</button>
         </div>
       </form>
     </div>

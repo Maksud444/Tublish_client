@@ -37,12 +37,12 @@
           padding: 20px;
         }
 
-        .images{
+        .images {
           display: flex;
           align-items: center;
           gap: 20px;
 
-          .imagesInputs{
+          .imagesInputs {
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -59,20 +59,20 @@
           cursor: pointer;
         }
 
-        .add{
+        .add {
           display: flex;
           justify-content: space-between;
 
-          input{
+          input {
             width: 80%;
           }
         }
 
-        .addedFeatures{
+        .addedFeatures {
           display: flex;
           gap: 20px;
 
-          button{
+          button {
             height: 30px;
             font-size: 12px;
             font-weight: 400;
@@ -82,6 +82,70 @@
             display: flex;
             align-items: center;
             gap: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  // Responsive styles for mobile
+  @media (max-width: 768px) {
+    .container {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .sections {
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+
+        .info,
+        .details {
+          width: 100%;
+          align-items: center;
+
+          input,
+          select,
+          textarea {
+            width: 100%;
+            max-width: 400px;
+          }
+
+          .images {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+          }
+
+          .add {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+
+            input {
+              width: 100%;
+              max-width: 400px;
+            }
+          }
+
+          .addedFeatures {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+
+            button {
+              width: 100%;
+              max-width: 200px;
+              justify-content: center;
+            }
           }
         }
       }

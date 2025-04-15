@@ -19,6 +19,7 @@ const Add = () => {
       payload: { name: e.target.name, value: e.target.value },
     });
   };
+
   const handleFeature = (e) => {
     e.preventDefault();
     dispatch({
@@ -31,28 +32,24 @@ const Add = () => {
   const handleUpload = async () => {
     setUploading(true);
     try {
-      console.log("Single File:", singleFile); // Debugging the single file
       const cover = await upload(singleFile);
-      console.log("Cover URL:", cover); // Debugging the cover upload
-  
+
       const images = await Promise.all(
         [...files].map(async (file) => {
-          console.log("Uploading File:", file); // Debugging each file
           const url = await upload(file);
-          console.log("Image URL:", url); // Debugging each image upload
           return url;
         })
       );
+
       setUploading(false);
       dispatch({ type: "ADD_IMAGES", payload: { cover, images } });
-      console.log("Updated State:", { cover, images }); // Debugging the updated state
     } catch (err) {
-      console.log("Upload Error:", err); // Debugging upload errors
+      console.log("Upload Error:", err);
       setUploading(false);
     }
   };
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -63,20 +60,19 @@ const Add = () => {
       queryClient.invalidateQueries(["myGigs"]);
     },
     onError: (error) => {
-      console.log("Mutation Error:", error.response?.data || error.message); // Debugging API errors
+      console.log("Mutation Error:", error.response?.data || error.message);
     },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Gig State Before Submit:", state); // Debugging the state
     if (!state.cover) {
       alert("Please upload a cover image before submitting.");
       return;
     }
     mutation.mutate(state, {
       onSuccess: () => {
-        navigate("/mygigs"); // Redirect after successful gig creation
+        navigate("/mygigs");
       },
     });
   };
@@ -94,6 +90,7 @@ const Add = () => {
               placeholder="e.g. I will do something I'm really good at"
               onChange={handleChange}
             />
+
             <label htmlFor="">Category</label>
             <select name="cat" id="cat" onChange={handleChange}>
               <option value="design">Design</option>
@@ -103,6 +100,7 @@ const Add = () => {
               <option value="graphics">Graphics & Design</option>
               <option value="marketing">Digital Marketing</option>
             </select>
+
             <div className="images">
               <div className="imagesInputs">
                 <label htmlFor="">Cover Image</label>
@@ -110,28 +108,50 @@ const Add = () => {
                   type="file"
                   onChange={(e) => setSingleFile(e.target.files[0])}
                 />
+
                 <label htmlFor="">Upload Images</label>
                 <input
                   type="file"
                   multiple
                   onChange={(e) => setFiles(e.target.files)}
                 />
+
+                {/* Optional Preview of Selected Multiple Images */}
+                <div className="preview" style={{ marginTop: "10px" }}>
+                  {Array.from(files).map((file, index) => (
+                    <img
+                      key={index}
+                      src={URL.createObjectURL(file)}
+                      alt={`preview-${index}`}
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                        objectFit: "cover",
+                        marginRight: "10px",
+                        borderRadius: "6px",
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
+
               <button onClick={handleUpload}>
-                {uploading ? "uploading" : "Upload"}
+                {uploading ? "Uploading..." : "Upload"}
               </button>
             </div>
+
             <label htmlFor="">Description</label>
             <textarea
               name="desc"
-              id=""
-              placeholder="Brief descriptions to introduce your service to customers"
+              placeholder="Brief description to introduce your service"
               cols="0"
               rows="16"
               onChange={handleChange}
             ></textarea>
+
             <button onClick={handleSubmit}>Create</button>
           </div>
+
           <div className="details">
             <label htmlFor="">Service Title</label>
             <input
@@ -140,28 +160,28 @@ const Add = () => {
               placeholder="e.g. One-page web design"
               onChange={handleChange}
             />
+
             <label htmlFor="">Short Description</label>
             <textarea
               name="shortDesc"
               onChange={handleChange}
-              id=""
               placeholder="Short description of your service"
               cols="30"
               rows="10"
             ></textarea>
+
             <label htmlFor="">Delivery Time (e.g. 3 days)</label>
             <input type="number" name="deliveryTime" onChange={handleChange} />
+
             <label htmlFor="">Revision Number</label>
-            <input
-              type="number"
-              name="revisionNumber"
-              onChange={handleChange}
-            />
+            <input type="number" name="revisionNumber" onChange={handleChange} />
+
             <label htmlFor="">Add Features</label>
             <form action="" className="add" onSubmit={handleFeature}>
               <input type="text" placeholder="e.g. page design" />
-              <button type="submit">add</button>
+              <button type="submit">Add</button>
             </form>
+
             <div className="addedFeatures">
               {state?.features?.map((f) => (
                 <div className="item" key={f}>
@@ -176,6 +196,7 @@ const Add = () => {
                 </div>
               ))}
             </div>
+
             <label htmlFor="">Price</label>
             <input type="number" onChange={handleChange} name="price" />
           </div>

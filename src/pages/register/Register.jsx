@@ -29,12 +29,15 @@ function Register() {
       return { ...prev, isSeller: e.target.checked };
     });
   };
+
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     let url = "";
     if (file) {
-      url = await upload(file);
+      url = await upload(file); // this uses the upload function above
     }
   
     const token = localStorage.getItem("authToken"); // Retrieve the token from localStorage

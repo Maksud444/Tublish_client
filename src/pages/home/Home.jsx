@@ -72,7 +72,7 @@ function Home() {
 
       <div className="explore">
         <div className="container">
-          <h1>Explore the marketplace</h1>
+          <h1>Explore Top Freelance Services on Tupublish</h1>
           <div className="items">
             <div className="item">
               <img
@@ -80,7 +80,7 @@ function Home() {
                 alt=""
               />
               <div className="line"></div>
-              <span>Graphics & Design</span>
+              <span>Creative & Design</span>
             </div>
             <div className="item">
               <img
@@ -89,7 +89,8 @@ function Home() {
               />
               <div className="line"></div>
 
-              <span>Digital Marketing</span>
+              <span>
+                Marketing & Sales</span>
             </div>
             <div className="item">
               <img
@@ -129,7 +130,7 @@ function Home() {
                 alt=""
               />
               <div className="line"></div>
-              <span>Business</span>
+              <span>Business & Consulting</span>
             </div>
             <div className="item">
               <img
@@ -145,7 +146,7 @@ function Home() {
                 alt=""
               />
               <div className="line"></div>
-              <span>Data</span>
+              <span>Education & Training</span>
             </div>
             <div className="item">
               <img
@@ -153,7 +154,7 @@ function Home() {
                 alt=""
               />
               <div className="line"></div>
-              <span>Photography</span>
+              <span>Legal & Compliance</span>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.scss";
-
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="footer">
@@ -8,17 +8,15 @@ function Footer() {
         <div className="top">
           <div className="item">
             <h2>Categories</h2>
-            <span>Graphics & Design</span>
-            <span>Digital Marketing</span>
+            <span>Creative & Design</span>
             <span>Writing & Translation</span>
+            <span>Web & Tech</span>
+            <span>Marketing & Sales</span>
             <span>Video & Animation</span>
             <span>Music & Audio</span>
-            <span>Programming & Tech</span>
-            <span>Data</span>
-            <span>Business</span>
-            <span>Lifestyle</span>
-            <span>Photography</span>
-            <span>Sitemap</span>
+            <span>Business & Consulting</span>
+            <span>Education & Training</span>
+            <span>Legal & Compliance</span>
           </div>
           <div className="item">
             <h2>About</h2>
@@ -38,31 +36,19 @@ function Footer() {
             <span>Buying on Tupublish</span>
           </div>
           <div className="item">
-            <h2>Community</h2>
-            <span>Customer Success Stories</span>
-            <span>Community hub</span>
-            <span>Forum</span>
-            <span>Events</span>
-            <span>Blog</span>
-            <span>Influencers</span>
-            <span>Affiliates</span>
-            <span>Podcast</span>
-            <span>Invite a Friend</span>
-            <span>Become a Seller</span>
-            <span>Community Standards</span>
-          </div>
+       <h2>Explore</h2>
+       <Link to="/gigs" className="fooGig">
+       <span > ALL GIGS</span>
+         </Link>
+       </div>
           <div className="item">
-            <h2>More From Tupublish</h2>
-            <span>Tupublish Business</span>
-            <span>Tupublish Pro</span>
-            <span>Tupublish Logo Maker</span>
-            <span>Tupublish Guides</span>
-            <span>Get Inspired</span>
-            <span>Tupublish Select</span>
-            <span>ClearVoice</span>
-            <span>Tupublish Workspace</span>
-            <span>Learn</span>
-            <span>Working Not Working</span>
+            <h2>Our Products</h2>
+            <Link to="https://paytusker.com" className="fooGig">
+            <span>paytusker</span>
+            </Link>
+            <Link to="https://lawhelpzone.com" className="fooGig">
+            <span>lawhelpzone</span>
+            </Link>
           </div>
         </div>
         <hr />

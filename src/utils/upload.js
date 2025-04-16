@@ -6,12 +6,15 @@ const upload = async (file) => {
   formData.append("image", file);
 
   try {
-    const response = await axios.post(
-      "https://api.imgbb.com/1/upload?key=7df6d52cb9db492d1eba57dc97f8493e", // <-- your actual ImgBB key
-      formData
+    const res = await axios.post(
+      "https://api.imgbb.com/1/upload?key=7df6d52cb9db492d1eba57dc97f8493e",
+      formData,
+      {
+        
+        withCredentials: false,
+      }
     );
-
-    return response.data?.data?.url; // returns uploaded image URL
+    return res.data.data.url;
   } catch (err) {
     console.error("ImgBB Upload Error:", err);
     return "";

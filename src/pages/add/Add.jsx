@@ -113,7 +113,7 @@ const Add = () => {
                 <input
                   type="file"
                   multiple
-                  onChange={(e) => setFiles(e.target.files)}
+                  oonChange={(e) => setFile(e.target.files[0])}
                 />
 
                 {/* Optional Preview of Selected Multiple Images */}

@@ -64,12 +64,20 @@ const Add = () => {
     },
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Auto-trigger upload if not done
+    if (!state.cover) {
+      await handleUpload();
+    }
+
     if (!state.cover) {
       alert("Please upload a cover image before submitting.");
       return;
     }
+
+    console.log("Submitting gig:", state);
     mutation.mutate(state, {
       onSuccess: () => {
         navigate("/mygigs");
@@ -83,7 +91,7 @@ const Add = () => {
         <h1>Add New Gig</h1>
         <div className="sections">
           <div className="info">
-            <label htmlFor="">Title</label>
+            <label>Title</label>
             <input
               type="text"
               name="title"
@@ -91,8 +99,8 @@ const Add = () => {
               onChange={handleChange}
             />
 
-            <label htmlFor="">Category</label>
-            <select name="cat" id="cat" onChange={handleChange}>
+            <label>Category</label>
+            <select name="cat" onChange={handleChange}>
               <option value="design">Design</option>
               <option value="web">Web Development</option>
               <option value="animation">Animation</option>
@@ -103,20 +111,19 @@ const Add = () => {
 
             <div className="images">
               <div className="imagesInputs">
-                <label htmlFor="">Cover Image</label>
+                <label>Cover Image</label>
                 <input
                   type="file"
                   onChange={(e) => setSingleFile(e.target.files[0])}
                 />
 
-                <label htmlFor="">Upload Images</label>
+                <label>Upload Images</label>
                 <input
                   type="file"
                   multiple
-                  oonChange={(e) => setFile(e.target.files[0])}
+                  onChange={(e) => setFiles(e.target.files)}
                 />
 
-                {/* Optional Preview of Selected Multiple Images */}
                 <div className="preview" style={{ marginTop: "10px" }}>
                   {Array.from(files).map((file, index) => (
                     <img
@@ -140,11 +147,10 @@ const Add = () => {
               </button>
             </div>
 
-            <label htmlFor="">Description</label>
+            <label>Description</label>
             <textarea
               name="desc"
               placeholder="Brief description to introduce your service"
-              cols="0"
               rows="16"
               onChange={handleChange}
             ></textarea>
@@ -153,7 +159,7 @@ const Add = () => {
           </div>
 
           <div className="details">
-            <label htmlFor="">Service Title</label>
+            <label>Service Title</label>
             <input
               type="text"
               name="shortTitle"
@@ -161,23 +167,22 @@ const Add = () => {
               onChange={handleChange}
             />
 
-            <label htmlFor="">Short Description</label>
+            <label>Short Description</label>
             <textarea
               name="shortDesc"
-              onChange={handleChange}
               placeholder="Short description of your service"
-              cols="30"
               rows="10"
+              onChange={handleChange}
             ></textarea>
 
-            <label htmlFor="">Delivery Time (e.g. 3 days)</label>
+            <label>Delivery Time (e.g. 3 days)</label>
             <input type="number" name="deliveryTime" onChange={handleChange} />
 
-            <label htmlFor="">Revision Number</label>
+            <label>Revision Number</label>
             <input type="number" name="revisionNumber" onChange={handleChange} />
 
-            <label htmlFor="">Add Features</label>
-            <form action="" className="add" onSubmit={handleFeature}>
+            <label>Add Features</label>
+            <form className="add" onSubmit={handleFeature}>
               <input type="text" placeholder="e.g. page design" />
               <button type="submit">Add</button>
             </form>
@@ -197,8 +202,8 @@ const Add = () => {
               ))}
             </div>
 
-            <label htmlFor="">Price</label>
-            <input type="number" onChange={handleChange} name="price" />
+            <label>Price</label>
+            <input type="number" name="price" onChange={handleChange} />
           </div>
         </div>
       </div>

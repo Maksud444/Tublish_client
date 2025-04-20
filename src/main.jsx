@@ -6,7 +6,7 @@ import App from "./App";
 import axios from 'axios'; 
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://localhost:3000/api";
+axios.defaults.baseURL = "https://api.tupublish.com/api";
 
 const queryClient = new QueryClient();
 

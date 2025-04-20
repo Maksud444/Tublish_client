@@ -53,7 +53,7 @@ export const SocketProvider = ({ children }) => {
       console.log("User ID:", currentUser._id);
       
       // Get the socket URL
-      const socketUrl = "http://localhost:3001"; // Hardcode during troubleshooting
+      const socketUrl = "https://api.tupublish.com"; // Hardcode during troubleshooting
       console.log("Connecting to socket server at:", socketUrl);
       
       setConnectionStatus("connecting");

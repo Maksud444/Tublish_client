@@ -3,4 +3,32 @@
     text-decoration: none;
     color: inherit;
   }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.app {
+  width: 100%;
+  overflow-x: hidden; /* Additional safety measure */
+}
+
+/* Make sure all containers have proper width constraints */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Ensure images don't cause overflow */
+img {
+  max-width: 100%;
+  height: auto;
 }

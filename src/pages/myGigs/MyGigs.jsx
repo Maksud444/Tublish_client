@@ -4,6 +4,7 @@ import "./MyGigs.scss";
 import getCurrentUser from "../../utils/getCurrentUser";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import Loader from "../../components/loader/Loader";
 
 function MyGigs() {
   const currentUser = localStorage.getItem("currentUser") 
@@ -48,7 +49,7 @@ function MyGigs() {
         </div>
         
         {isLoading ? (
-          <div className="loading">Loading your gigs...</div>
+          <Loader text="Loading your gigs..." />
         ) : error ? (
           <div className="error">Error loading gigs: {error.message}</div>
         ) : data.length === 0 ? (

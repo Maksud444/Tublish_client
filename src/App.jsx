@@ -1,6 +1,6 @@
 import "./app.scss";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./components/navbar/Navbar.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import Home from "./pages/home/Home.jsx";
@@ -24,6 +24,18 @@ import {
 import Pay from "./pages/pay/Pay.jsx";
 import Success from "./pages/success/Success.jsx";
 import GigCard from "./components/gigCard/GigCard.jsx";
+import { useLocation } from "react-router-dom";
+
+// Create a ScrollToTop component
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  
+  return null;
+}
 
 function App() {
   const queryClient = new QueryClient({
@@ -49,12 +61,14 @@ function App() {
           {/* Only initialize socket provider if user is logged in */}
           {currentUser ? (
             <SocketProvider>
+              <ScrollToTop />
               <Navbar />
               <Outlet />
               <Footer />
             </SocketProvider>
           ) : (
             <>
+              <ScrollToTop />
               <Navbar />
               <Outlet />
               <Footer />
@@ -134,7 +148,6 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-   
       </QueryClientProvider>
     </>
   );

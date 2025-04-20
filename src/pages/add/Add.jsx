@@ -5,6 +5,7 @@ import upload from "../../utils/upload.js";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest.js";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/loader/Loader";
 
 const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
@@ -135,8 +136,12 @@ const Add = () => {
                 </div>
               </div>
 
-              <button onClick={handleUpload} className="upload-btn">
-                {uploading ? "Uploading..." : "Upload"}
+              <button 
+                onClick={handleUpload} 
+                className="upload-btn"
+                disabled={uploading}
+              >
+                {uploading ? <Loader size="small" text="" /> : "Upload"}
               </button>
             </div>
 

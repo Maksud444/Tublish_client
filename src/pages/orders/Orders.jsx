@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Orders.scss";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest.js";
+import Loader from "../../components/loader/Loader";
 
 const Orders = () => {
   const [activeTab, setActiveTab] = useState("all");
@@ -72,7 +73,7 @@ const Orders = () => {
         </div>
 
         {isLoading ? (
-          <div className="loading">Loading orders...</div>
+          <Loader text="Loading your orders..." />
         ) : error ? (
           <div className="error">Error loading orders: {error.message}</div>
         ) : filteredOrders.length === 0 ? (

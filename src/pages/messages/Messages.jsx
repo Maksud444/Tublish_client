@@ -5,6 +5,7 @@ import newRequest from "../../utils/newRequest.js";
 import "./Messages.scss";
 import moment from "moment";
 import { useSocket } from "../../context/SocketContext.jsx";
+import Loader from "../../components/loader/Loader";
 
 const Messages = () => {
   const currentUser = localStorage.getItem("currentUser") 
@@ -100,9 +101,9 @@ const Messages = () => {
         </div>
         
         {isLoading ? (
-          <div className="loading">Loading conversations...</div>
+          <Loader text="Loading your messages..." />
         ) : error ? (
-          <div className="error">Error loading conversations: {error.message}</div>
+          <div className="error">Error loading messages: {error.message}</div>
         ) : data.length === 0 ? (
           <div className="no-messages">
             <p>You don't have any messages yet.</p>

@@ -4,6 +4,7 @@ import newRequest from "../../utils/newRequest.js";
 import "./Message.scss";
 import { useSocket } from "../../context/SocketContext.jsx";
 import moment from "moment";
+import Loader from "../../components/loader/Loader";
 
 const Message = () => {
   const { id } = useParams();
@@ -314,10 +315,7 @@ const Message = () => {
         </div>
         
         {isLoading || isConnecting ? (
-          <div className="loading-container">
-            <div className="loading-spinner"></div>
-            <span>{isConnecting ? "Connecting to chat server..." : "Loading messages..."}</span>
-          </div>
+          <Loader text="Loading messages..." />
         ) : error ? (
           <div className="error-message">
             <i className="fas fa-exclamation-circle"></i>

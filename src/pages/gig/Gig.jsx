@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest.js";
 import Reviews from "../../components/reviews/Reviews.jsx";
+import Loader from "../../components/loader/Loader";
 
 function Gig() {
   const { id } = useParams();
@@ -79,7 +80,7 @@ function Gig() {
   return (
     <div className="gig">
       {isLoading ? (
-        <div className="loading">Loading gig details...</div>
+        <Loader text="Loading gig details..." />
       ) : error ? (
         <div className="error">Something went wrong! {error.message}</div>
       ) : (

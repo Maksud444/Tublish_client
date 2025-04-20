@@ -94,68 +94,60 @@ const Messages = () => {
   return (
     <div className="messages">
       {import.meta.env.DEV && debug()}
-      {isLoading ? (
-        "loading"
-      ) : error ? (
-        "error"
-      ) : (
-        <div className="container">
-          <div className="title">
-            <h1>Messages</h1>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>{currentUser.isSeller ? "Buyer" : "Seller"}</th>
-                <th>Last Message</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((c) => {
-                const otherUserId = currentUser.isSeller ? c.buyerId : c.sellerId;
-                // Get username from conversation if available
-                const username = c.username || otherUserId.substring(0, 8) + "...";
-                const isOnline = onlineUsers[otherUserId] === "online";
-                
-                return (
-                  <tr
-                    className={
-                      ((currentUser.isSeller && !c.readBySeller) ||
-                        (!currentUser.isSeller && !c.readByBuyer)) &&
-                      "active"
-                    }
-                    key={c.id}
-                  >
-                    <td>{username}</td>
-                    <td>
-                      <Link to={`/message/${c.id}`} className="link">
-                        {c?.lastMessage ? c.lastMessage.substring(0, 100) + "..." : "Start conversation"}
-                      </Link>
-                    </td>
-                    <td>{moment(c.updatedAt).fromNow()}</td>
-                    <td>
-                      <span className={`status-indicator ${isOnline ? "online" : "offline"}`}>
-                        {isOnline ? "Online" : "Offline"}
-                      </span>
-                    </td>
-                    <td>
-                      {((currentUser.isSeller && !c.readBySeller) ||
-                        (!currentUser.isSeller && !c.readByBuyer)) && (
-                        <button onClick={() => handleRead(c.id)}>
-                          Mark as Read
-                        </button>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      <div className="container">
+        <div className="title">
+          <h1>Messages</h1>
         </div>
-      )}
+        
+        {isLoading ? (
+          <div className="loading">Loading conversations...</div>
+        ) : error ? (
+          <div className="error">Error loading conversations: {error.message}</div>
+        ) : data.length === 0 ? (
+          <div className="no-messages">
+            <p>You don't have any messages yet.</p>
+          </div>
+        ) : (
+          <div className="messages-list">
+            {data.map((c) => {
+              const otherUserId = currentUser.isSeller ? c.buyerId : c.sellerId;
+              // Get username from conversation if available
+              const username = c.username || otherUserId.substring(0, 8) + "...";
+              const isOnline = onlineUsers[otherUserId] === "online";
+              const isUnread = (currentUser.isSeller && !c.readBySeller) || (!currentUser.isSeller && !c.readByBuyer);
+              
+              return (
+                <div className={`message-item ${isUnread ? "unread" : ""}`} key={c.id}>
+                  <div className="user-info">
+                    <span className="username">{username}</span>
+                    <span className={`status-indicator ${isOnline ? "online" : "offline"}`}>
+                      {isOnline ? "Online" : "Offline"}
+                    </span>
+                  </div>
+                  
+                  <div className="message-preview">
+                    <Link to={`/message/${c.id}`} className="message-link">
+                      {c?.lastMessage ? c.lastMessage.substring(0, 100) + (c.lastMessage.length > 100 ? "..." : "") : "Start conversation"}
+                    </Link>
+                  </div>
+                  
+                  <div className="message-meta">
+                    <span className="time">{moment(c.updatedAt).fromNow()}</span>
+                    {isUnread && (
+                      <button 
+                        className="mark-read-btn" 
+                        onClick={() => handleRead(c.id)}
+                      >
+                        Mark as Read
+                      </button>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

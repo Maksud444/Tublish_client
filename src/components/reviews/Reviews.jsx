@@ -49,7 +49,7 @@ const Reviews = ({ gigId }) => {
             <option value={4}>4</option>
             <option value={5}>5</option>
           </select>
-          <button>Send</button>
+          <button type="submit">Send</button>
         </form>
       </div>
     </div>

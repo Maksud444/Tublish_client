@@ -18,7 +18,7 @@ const Message = () => {
   const messagesEndRef = useRef(null);
   const messagesContainerRef = useRef(null);
   const fetchedRef = useRef(false);
-  const { socket, onlineUsers } = useSocket();
+  const { socket, onlineUsers = {}, isConnecting } = useSocket() || {};
   
   const currentUser = localStorage.getItem("currentUser") 
     ? JSON.parse(localStorage.getItem("currentUser")).user 
@@ -186,7 +186,7 @@ const Message = () => {
   const handleTyping = (e) => {
     setNewMessage(e.target.value);
     
-    if (socket && otherUserId) {
+    if (socket && socket.connected && otherUserId) {
       if (typingTimeout) {
         clearTimeout(typingTimeout);
       }
@@ -195,6 +195,7 @@ const Message = () => {
         conversationId: id,
         receiverId: otherUserId
       });
+      console.log("Sent typing event:", { conversationId: id, receiverId: otherUserId });
       
       const timeout = setTimeout(() => {
         socket.emit("stopTyping", {
@@ -312,10 +313,10 @@ const Message = () => {
           </div>
         </div>
         
-        {isLoading && messages.length === 0 ? (
+        {isLoading || isConnecting ? (
           <div className="loading-container">
             <div className="loading-spinner"></div>
-            <span>Loading messages...</span>
+            <span>{isConnecting ? "Connecting to chat server..." : "Loading messages..."}</span>
           </div>
         ) : error ? (
           <div className="error-message">

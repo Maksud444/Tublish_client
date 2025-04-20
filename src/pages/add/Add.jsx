@@ -124,25 +124,18 @@ const Add = () => {
                   onChange={(e) => setFiles(e.target.files)}
                 />
 
-                <div className="preview" style={{ marginTop: "10px" }}>
+                <div className="preview">
                   {Array.from(files).map((file, index) => (
                     <img
                       key={index}
                       src={URL.createObjectURL(file)}
                       alt={`preview-${index}`}
-                      style={{
-                        width: "80px",
-                        height: "80px",
-                        objectFit: "cover",
-                        marginRight: "10px",
-                        borderRadius: "6px",
-                      }}
                     />
                   ))}
                 </div>
               </div>
 
-              <button onClick={handleUpload}>
+              <button onClick={handleUpload} className="upload-btn">
                 {uploading ? "Uploading..." : "Upload"}
               </button>
             </div>
@@ -155,7 +148,7 @@ const Add = () => {
               onChange={handleChange}
             ></textarea>
 
-            <button onClick={handleSubmit}>Create</button>
+            <button onClick={handleSubmit} className="create-btn">Create</button>
           </div>
 
           <div className="details">

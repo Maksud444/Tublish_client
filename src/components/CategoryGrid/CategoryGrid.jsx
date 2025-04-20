@@ -13,13 +13,20 @@ const categories = [
 
 const CategoryGrid = () => {
   return (
-    <div className="categoryGrid">
-      {categories.map((cat, index) => (
-        <div className="categoryCard" key={index}>
-          <img src={cat.icon} alt={cat.label} />
-          <span>{cat.label}</span>
+    <div className="category-section">
+      <div className="container">
+        <h2 className="section-title">Popular Categories</h2>
+        <div className="categoryGrid">
+          {categories.map((cat, index) => (
+            <div className="categoryCard" key={index}>
+              <div className="card-content">
+                <img src={cat.icon} alt={cat.label} />
+                <span>{cat.label}</span>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };

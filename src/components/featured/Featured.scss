@@ -1,162 +1,130 @@
 .featured {
   position: relative;
+  height: 600px;
+  background-image: url("https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=1600");
+  background-position: center;
+  background-size: cover;
   color: white;
-  background-color: rgb(242, 148, 46);
-  text-align: center;
-
-  .overlay {
-    background: linear-gradient(to bottom,rgb(242, 148, 46));
-    padding: 80px 20px;
-    position: relative;
-    z-index: 2;
-
-    @media (min-width: 769px) {
-      background: none;
-      padding: 80px 20px;
-    }
-  }
-
-  .backgroundVideo {
-    display: none;
-
-    @media (min-width: 769px) {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
-  }
-
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 3;
-  }
-
-  .title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 40px;
-  }
-
-  .searchBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 5px;
-    max-width: 600px;
-    margin: 0 auto;
-
-    .searchInput {
-      border: none;
-      padding: 15px;
-      font-size: 1rem;
-      flex: 1;
-      outline: none;
-      color: #555;
-    }
-
-    .searchButton {
-      background-color: #000000;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50px;
-
-      .searchIcon {
-        width: 24px;
-        height: 24px;
-        color: white;
-      }
-    }
-  }
-
-  .popular {
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-
-    button {
-      background: white;
-      color: #004225;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: background 0.3s;
-
-      &:hover {
-        background: #f0f0f0;
-      }
-    }
-  }
-
+  
   @media (max-width: 768px) {
-    .overlay {
-      background: linear-gradient(to bottom, rgb(242, 148, 46));
-      padding: 60px 15px;
-    }
-
+    height: 500px;
+  }
+  
+  @media (max-width: 576px) {
+    height: 400px;
+  }
+  
+  .overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    
     .title {
-      font-size: 1.8rem;
+      font-size: 3rem;
+      margin-bottom: 30px;
+      
+      @media (max-width: 992px) {
+        font-size: 2.5rem;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+      
+      @media (max-width: 576px) {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
     }
-
+    
     .searchBox {
-      flex-direction: row;
-      padding: 0;
-      border-radius: 12px;
-      border: 1px solid #004225;
-
+      display: flex;
+      background-color: white;
+      border-radius: 5px;
+      overflow: hidden;
+      max-width: 800px;
+      
       .searchInput {
-        width: 100%;
+        flex: 1;
         padding: 15px;
-        font-size: 0.95rem;
         border: none;
         outline: none;
-        color: #666;
+        font-size: 1rem;
         
+        @media (max-width: 576px) {
+          padding: 10px;
+          font-size: 0.9rem;
+        }
       }
-
+      
       .searchButton {
-        width: auto;
-        background-color: #004225;
-        padding: 10px;
+        width: 60px;
+        background-color: #1dbf73;
+        border: none;
+        color: white;
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50px;
-        margin-right: 10px;
         
-
+        @media (max-width: 576px) {
+          width: 50px;
+        }
+        
         .searchIcon {
-          width: 15px;
-          height: 15px;
-          color: white;
+          width: 20px;
+          height: 20px;
+          
+          @media (max-width: 576px) {
+            width: 16px;
+            height: 16px;
+          }
         }
       }
     }
-
+    
     .popular {
-      flex-direction: column;
-      align-items: center;
-
-      button {
-        width: 100%;
-        max-width: 300px;
+      margin-top: 30px;
+      
+      @media (max-width: 576px) {
+        margin-top: 20px;
+      }
+      
+      .popular-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        
+        button {
+          background-color: transparent;
+          border: 1px solid white;
+          color: white;
+          padding: 8px 15px;
+          border-radius: 20px;
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+          
+          &:hover {
+            background-color: white;
+            color: #1dbf73;
+          }
+          
+          @media (max-width: 576px) {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+          }
+        }
       }
     }
   }

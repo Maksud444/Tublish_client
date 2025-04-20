@@ -41,79 +41,165 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <h1>{user.isSeller ? "Seller Dashboard" : "Buyer Dashboard"}</h1>
-      {isEditing ? (
-        <form onSubmit={handleSubmit}>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <label>Country</label>
-          <input
-            type="text"
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-          />
-          <label>Description</label>
-          <textarea
-            name="desc"
-            value={formData.desc}
-            onChange={handleChange}
-          ></textarea>
-          <button type="submit">Save</button>
-        </form>
-      ) : (
-        <div>
-          <p>
-            <strong>Username:</strong> {user.username}
-          </p>
-          <p>
-            <strong>Email:</strong> {user.email}
-          </p>
-          <p>
-            <strong>Country:</strong> {user.country}
-          </p>
-          <p>
-            <strong>Description:</strong> {user.desc}
-          </p>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
+      <div className="container">
+        <div className="dashboard-header">
+          <h1>{user.isSeller ? "Seller Dashboard" : "Buyer Dashboard"}</h1>
         </div>
-      )}
-      {user.isSeller ? (
-        <div>
-          <h2>Seller Features</h2>
-          {/* Link to Add New Gig page */}
-          <Link to="/add">
-            <button>Add New Gig</button>
-          </Link>
-          {/* Link to View My Gigs page */}
-          <Link to="/mygigs">
-            <button>View My Gigs</button>
-          </Link>
+        
+        <div className="dashboard-content">
+          <div className="profile-section">
+            <h2>Profile Information</h2>
+            
+            {isEditing ? (
+              <form className="edit-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label htmlFor="username">Username</label>
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={formData.username || ""}
+                    onChange={handleChange}
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email || ""}
+                    onChange={handleChange}
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="country">Country</label>
+                  <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value={formData.country || ""}
+                    onChange={handleChange}
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="desc">Description</label>
+                  <textarea
+                    id="desc"
+                    name="desc"
+                    value={formData.desc || ""}
+                    onChange={handleChange}
+                    rows="4"
+                  ></textarea>
+                </div>
+                
+                <div className="form-actions">
+                  <button type="submit" className="save-btn">Save</button>
+                  <button 
+                    type="button" 
+                    className="cancel-btn"
+                    onClick={() => {
+                      setIsEditing(false);
+                      setFormData(user); // Reset form data to current user data
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div className="profile-info">
+                <div className="info-item">
+                  <span className="label">Username:</span>
+                  <span className="value">{user.username}</span>
+                </div>
+                
+                <div className="info-item">
+                  <span className="label">Email:</span>
+                  <span className="value">{user.email}</span>
+                </div>
+                
+                <div className="info-item">
+                  <span className="label">Country:</span>
+                  <span className="value">{user.country || "Not specified"}</span>
+                </div>
+                
+                <div className="info-item">
+                  <span className="label">Description:</span>
+                  <p className="value description">{user.desc || "No description provided."}</p>
+                </div>
+                
+                <button onClick={() => setIsEditing(true)} className="edit-btn">
+                  Edit Profile
+                </button>
+              </div>
+            )}
+          </div>
+          
+          <div className="features-section">
+            <h2>{user.isSeller ? "Seller Features" : "Buyer Features"}</h2>
+            
+            <div className="features-grid">
+              {user.isSeller ? (
+                <>
+                  <Link to="/add" className="feature-card">
+                    {/* <div className="icon">
+                      <i className="fa fa-plus-circle"></i>
+                    </div> */}
+                    <h3>Add New Gig</h3>
+                    <p>Create a new service to offer to potential buyers</p>
+                  </Link>
+                  
+                  <Link to="/mygigs" className="feature-card">
+                    {/* <div className="icon">
+                      <i className="fa fa-list"></i>
+                    </div> */}
+                    <h3>View My Gigs</h3>
+                    <p>Manage your existing services and check their performance</p>
+                  </Link>
+                  
+                  <Link to="/orders" className="feature-card">
+                    {/* <div className="icon">
+                      <i className="fa fa-shopping-cart"></i>
+                    </div> */}
+                    <h3>View Orders</h3>
+                    <p>Check and manage orders from your customers</p>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/orders" className="feature-card">
+                    {/* <div className="icon">
+                      <i className="fa fa-shopping-cart"></i>
+                    </div> */}
+                    <h3>View Orders</h3>
+                    <p>Check the status of your purchases</p>
+                  </Link>
+                  
+                  <Link to="/gigs" className="feature-card">
+                    {/* <div className="icon">
+                      <i className="fa fa-search"></i>
+                    </div> */}
+                    <h3>Browse Gigs</h3>
+                    <p>Find services that match your needs</p>
+                  </Link>
+                  
+                  <Link to="/messages" className="feature-card">
+                    {/* <div className="icon">
+                      <i className="fa fa-envelope"></i>
+                    </div> */}
+                    <h3>Messages</h3>
+                    <p>Communicate with sellers about your orders</p>
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
         </div>
-      ) : (
-        <div>
-          <h2>Buyer Features</h2>
-          <Link to="/orders">
-          <button>View Orders</button>
-          </Link>
-
-          <Link to="/gigs">
-          <button>Browse Gigs</button>
-          </Link>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

@@ -147,8 +147,6 @@ const Add = () => {
               rows="16"
               onChange={handleChange}
             ></textarea>
-
-            <button onClick={handleSubmit} className="create-btn">Create</button>
           </div>
 
           <div className="details">
@@ -197,6 +195,8 @@ const Add = () => {
 
             <label>Price</label>
             <input type="number" name="price" onChange={handleChange} />
+            
+            <button onClick={handleSubmit} className="create-btn">Create</button>
           </div>
         </div>
       </div>

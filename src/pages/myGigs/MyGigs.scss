@@ -1,54 +1,286 @@
 .myGigs {
-  display: flex;
-  justify-content: center;
-  color: #555;
-
+  width: 100%;
+  padding: 40px 0 60px;
+  
   .container {
-    width: 1400px;
-    padding: 50px 0px;
-
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    
     .title {
       display: flex;
       justify-content: space-between;
-
+      align-items: center;
+      margin-bottom: 30px;
+      
+      @media (max-width: 576px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      
+      h1 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+        
+        @media (max-width: 768px) {
+          font-size: 24px;
+        }
+        
+        @media (max-width: 576px) {
+          font-size: 22px;
+        }
+      }
+      
       button {
-        background-color: #000000;
+        padding: 10px 20px;
+        background-color: #1dbf73;
         color: white;
-        font-weight: 500;
         border: none;
-        padding: 10px;
+        border-radius: 4px;
         cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.3s;
+        
+        &:hover {
+          background-color: #19a463;
+        }
+        
+        @media (max-width: 576px) {
+          width: 100%;
+          padding: 10px 0;
+        }
       }
     }
-
-    table {
-      width: 100%;
-
-      tr {
-        height: 50px;
-        th {
-          text-align: left;
+    
+    .loading, .error, .no-gigs {
+      text-align: center;
+      padding: 40px 0;
+      color: #777;
+      
+      .create-first {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #1dbf73;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: background-color 0.3s;
+        
+        &:hover {
+          background-color: #19a463;
         }
-        td {
-
-          sup{
-            font-size: 12px;
+      }
+    }
+    
+    .error {
+      color: #e74c3c;
+    }
+    
+    .table-container {
+      overflow-x: auto;
+      
+      @media (max-width: 768px) {
+        display: none; // Hide table on mobile
+      }
+      
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        overflow: hidden;
+        
+        th, td {
+          padding: 15px;
+          text-align: left;
+          border-bottom: 1px solid #eee;
+          
+          &:last-child {
+            text-align: center;
+          }
+        }
+        
+        th {
+          background-color: #f9f9f9;
+          font-weight: 600;
+          color: #555;
+        }
+        
+        tr:last-child td {
+          border-bottom: none;
+        }
+        
+        .image {
+          width: 50px;
+          height: 30px;
+          object-fit: cover;
+          border-radius: 4px;
+        }
+        
+        .gig-title {
+          color: #333;
+          text-decoration: none;
+          font-weight: 500;
+          
+          &:hover {
+            text-decoration: underline;
+            color: #1dbf73;
+          }
+        }
+        
+        .actions {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          
+          .edit-btn, .delete-btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
           }
           
-          .image {
-            width: 50px;
-            height: 25px;
+          .edit-btn {
+            background-color: #f0f0f0;
+            color: #555;
+            text-decoration: none;
+            
+            &:hover {
+              background-color: #e0e0e0;
+            }
+          }
+          
+          .delete-btn {
+            background-color: #fff0f0;
+            color: #e74c3c;
+            border: none;
+            
+            &:hover {
+              background-color: #ffe0e0;
+            }
+          }
+        }
+      }
+    }
+    
+    .mobile-gigs {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+      
+      @media (max-width: 768px) {
+        display: flex;
+      }
+      
+      .gig-card {
+        display: flex;
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        
+        @media (max-width: 576px) {
+          flex-direction: column;
+        }
+        
+        .gig-image {
+          width: 120px;
+          height: 120px;
+          flex-shrink: 0;
+          
+          @media (max-width: 576px) {
+            width: 100%;
+            height: 150px;
+          }
+          
+          img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
           }
-
-          .delete {
-            width: 20px;
-            cursor: pointer;
-          }
-
         }
-        &:nth-child(even) {
-          background-color: #0000000f;
+        
+        .gig-info {
+          flex: 1;
+          padding: 15px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          
+          h3 {
+            margin: 0 0 10px;
+            font-size: 16px;
+            
+            a {
+              color: #333;
+              text-decoration: none;
+              
+              &:hover {
+                color: #1dbf73;
+                text-decoration: underline;
+              }
+            }
+          }
+          
+          .gig-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            
+            .price {
+              font-weight: 600;
+              color: #1dbf73;
+            }
+            
+            .sales {
+              color: #777;
+              font-size: 14px;
+            }
+          }
+          
+          .gig-actions {
+            display: flex;
+            gap: 10px;
+            
+            .edit-btn, .delete-btn {
+              flex: 1;
+              padding: 8px 0;
+              border-radius: 4px;
+              font-size: 14px;
+              cursor: pointer;
+              transition: all 0.3s;
+              text-align: center;
+            }
+            
+            .edit-btn {
+              background-color: #f0f0f0;
+              color: #555;
+              text-decoration: none;
+              
+              &:hover {
+                background-color: #e0e0e0;
+              }
+            }
+            
+            .delete-btn {
+              background-color: #fff0f0;
+              color: #e74c3c;
+              border: none;
+              
+              &:hover {
+                background-color: #ffe0e0;
+              }
+            }
+          }
         }
       }
     }

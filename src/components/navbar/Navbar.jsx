@@ -17,7 +17,9 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = localStorage.getItem("currentUser") 
+    ? JSON.parse(localStorage.getItem("currentUser")).user 
+    : null;
 
   const isActive = () => setActive(window.scrollY > 0);
 
@@ -30,7 +32,7 @@ function Navbar() {
     localStorage.removeItem("currentUser");
     navigate("/");
   };
-
+console.log(currentUser);
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className="container">

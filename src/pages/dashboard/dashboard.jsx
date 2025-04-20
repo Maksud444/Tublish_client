@@ -7,7 +7,9 @@ const Dashboard = () => {
   const [user, setUser] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = localStorage.getItem("currentUser") 
+    ? JSON.parse(localStorage.getItem("currentUser")).user 
+    : null;
 
   useEffect(() => {
     const fetchUser = async () => {

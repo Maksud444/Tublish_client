@@ -2,7 +2,9 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = localStorage.getItem("currentUser") 
+    ? JSON.parse(localStorage.getItem("currentUser")).user 
+    : null;
 
   // If no user is logged in, redirect to the login page
   if (!currentUser) {

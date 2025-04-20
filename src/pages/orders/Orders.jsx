@@ -5,7 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest.js";
 
 const Orders = () => {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = localStorage.getItem("currentUser") 
+    ? JSON.parse(localStorage.getItem("currentUser")).user 
+    : null;
 
   const navigate = useNavigate();
   const { isLoading, error, data } = useQuery({
@@ -22,12 +24,12 @@ const Orders = () => {
     const id = sellerId + buyerId;
 
     try {
-      const res = await newRequest.get(`/conversations/single/${id}`);
+      // const res = await newRequest.get(`/conversations/single/${id}`);
       navigate(`/message/${res.data.id}`);
     } catch (err) {
       if (err.response.status === 404) {
         const res = await newRequest.post(`/conversations/`, {
-          to: currentUser.seller ? buyerId : sellerId,
+          to: currentUser.isSeller ? buyerId : sellerId,
         });
         navigate(`/message/${res.data.id}`);
       }

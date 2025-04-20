@@ -6,7 +6,9 @@ import "./Message.scss";
 
 const Message = () => {
   const { id } = useParams();
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = localStorage.getItem("currentUser") 
+    ? JSON.parse(localStorage.getItem("currentUser")).user 
+    : null;
 
   const queryClient = useQueryClient();
 

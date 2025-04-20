@@ -15,7 +15,7 @@ import Message from "./pages/message/Message.jsx";
 import MyGigs from "./pages/myGigs/MyGigs.jsx";
 import Dashboard from "./pages/dashboard/dashboard.jsx";
 import PrivateRoute from "./components/privateRoute/privateRoute.jsx";
-
+import { SocketProvider } from "./context/SocketContext.jsx";
 
 import {
   QueryClient,
@@ -24,16 +24,42 @@ import {
 import Pay from "./pages/pay/Pay.jsx";
 import Success from "./pages/success/Success.jsx";
 import GigCard from "./components/gigCard/GigCard.jsx";
+
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        staleTime: 1000 * 60,
+        cacheTime: 1000 * 60 * 10,
+        retry: 1,
+      },
+    },
+  });
 
   const Layout = () => {
+    // Get the current user
+    const currentUser = localStorage.getItem("currentUser") 
+      ? JSON.parse(localStorage.getItem("currentUser")) 
+      : null;
+    
     return (
       <div className="app">
         <QueryClientProvider client={queryClient}>
-          <Navbar />
-          <Outlet />
-          <Footer />
+          {/* Only initialize socket provider if user is logged in */}
+          {currentUser ? (
+            <SocketProvider>
+              <Navbar />
+              <Outlet />
+              <Footer />
+            </SocketProvider>
+          ) : (
+            <>
+              <Navbar />
+              <Outlet />
+              <Footer />
+            </>
+          )}
         </QueryClientProvider>
       </div>
     );
@@ -104,7 +130,14 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+   
+      </QueryClientProvider>
+    </>
+  );
 }
 
 export default App;

@@ -19,20 +19,19 @@ const Orders = () => {
   });
 
   const handleContact = async (order) => {
-    const sellerId = order.sellerId;
-    const buyerId = order.buyerId;
-    const id = sellerId + buyerId;
-
     try {
-      // const res = await newRequest.get(`/conversations/single/${id}`);
+      // Determine if current user is seller or buyer
+      const isSeller = currentUser.isSeller;
+      const to = isSeller ? order.buyerId : order.sellerId;
+      
+      // Create a new conversation (the controller will check if it already exists)
+      const res = await newRequest.post(`/conversations/`, { to });
+      
+      // Navigate to message
       navigate(`/message/${res.data.id}`);
     } catch (err) {
-      if (err.response.status === 404) {
-        const res = await newRequest.post(`/conversations/`, {
-          to: currentUser.isSeller ? buyerId : sellerId,
-        });
-        navigate(`/message/${res.data.id}`);
-      }
+      console.error("Error starting conversation:", err.response?.data || err.message);
+      alert("Could not start conversation. Please try again.");
     }
   };
   return (

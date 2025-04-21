@@ -16,14 +16,19 @@ function Footer() {
             <span>Music & Audio</span>
             <span>Business & Consulting</span>
             <span>Education & Training</span>
-            <span>Legal & Compliance</span>
+            <span><Link to="/legal" className="footer-link">Legal & Compliance</Link></span>
           </div>
           <div className="item">
             <h2>About</h2>
-            <span>Press & News</span>
-            <span>Partnerships</span>
-            <span>Privacy Policy</span>
+            <span>About Us</span>
+            <span>How it Works</span>
+            <span><Link to="/partnerships" className="footer-link">Partnerships</Link></span>
+            <span>Careers</span>
+            <span>Press</span>
+            <span><Link to="/privacy" className="footer-link">Privacy Policy</Link></span>
+            <Link to="/terms" className="footer-link">
             <span>Terms of Service</span>
+            </Link>
             <span>Intellectual Property Claims</span>
             <span>Investor Relations</span>
             <span>Contact Sales</span>

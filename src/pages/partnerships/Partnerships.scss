@@ -1,0 +1,162 @@
+.partnerships-page {
+  width: 100%;
+  padding: 40px 0 60px;
+  
+  .container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    
+    .partnerships-header {
+      text-align: center;
+      margin-bottom: 40px;
+      
+      h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 30px;
+        
+        @media (max-width: 768px) {
+          font-size: 30px;
+        }
+        
+        @media (max-width: 576px) {
+          font-size: 26px;
+        }
+      }
+      
+      .partnerships-image {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        
+        @media (max-width: 768px) {
+          height: 250px;
+        }
+        
+        @media (max-width: 576px) {
+          height: 200px;
+        }
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+    
+    .partnerships-content {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 40px;
+      
+      @media (max-width: 768px) {
+        padding: 30px;
+      }
+      
+      @media (max-width: 576px) {
+        padding: 20px;
+      }
+      
+      .welcome-section, .offers-section {
+        margin-bottom: 40px;
+        
+        @media (max-width: 576px) {
+          margin-bottom: 30px;
+        }
+        
+        .intro {
+          font-size: 20px;
+          font-weight: 600;
+          color: #333;
+          margin-bottom: 20px;
+          
+          @media (max-width: 576px) {
+            font-size: 18px;
+          }
+        }
+        
+        h2 {
+          font-size: 24px;
+          font-weight: 600;
+          color: #333;
+          margin-bottom: 20px;
+          
+          @media (max-width: 576px) {
+            font-size: 20px;
+          }
+        }
+        
+        ul {
+          list-style-type: none;
+          padding: 0;
+          
+          li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            
+            .icon {
+              font-size: 24px;
+              margin-right: 15px;
+              
+              @media (max-width: 576px) {
+                font-size: 20px;
+                margin-right: 10px;
+              }
+            }
+            
+            .text {
+              font-size: 18px;
+              color: #555;
+              
+              @media (max-width: 576px) {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+      
+      .contact-section {
+        text-align: center;
+        padding: 30px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        
+        p {
+          font-size: 18px;
+          color: #555;
+          margin-bottom: 15px;
+          
+          @media (max-width: 576px) {
+            font-size: 16px;
+          }
+        }
+        
+        .email-link {
+          display: inline-block;
+          font-size: 18px;
+          color: #555;
+          text-decoration: none;
+          padding: 10px 20px;
+          border: 1px solid #555;
+          border-radius: 5px;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            background-color: #555;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+} 

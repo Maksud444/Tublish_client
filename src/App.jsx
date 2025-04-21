@@ -25,6 +25,11 @@ import Pay from "./pages/pay/Pay.jsx";
 import Success from "./pages/success/Success.jsx";
 import GigCard from "./components/gigCard/GigCard.jsx";
 import { useLocation } from "react-router-dom";
+import Terms from "./pages/terms/Terms";
+import Partnerships from "./pages/partnerships/Partnerships";
+import Privacy from "./pages/privacy/Privacy";
+import Legal from "./pages/legal/Legal";
+import newRequest from "./utils/newRequest";
 
 // Create a ScrollToTop component
 function ScrollToTop() {
@@ -140,9 +145,26 @@ function App() {
             </PrivateRoute>
           ),
         },
+        {
+          path: "/terms",
+          element: <Terms />,
+        },
+        {
+          path: "/partnerships",
+          element: <Partnerships />,
+        },
+        {
+          path: "/privacy",
+          element: <Privacy />,
+        },
+        {
+          path: "/legal",
+          element: <Legal />,
+        },
       ],
     },
   ]);
+
 
   return (
     <>

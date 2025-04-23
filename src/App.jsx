@@ -30,7 +30,7 @@ import Partnerships from "./pages/partnerships/Partnerships";
 import Privacy from "./pages/privacy/Privacy";
 import Legal from "./pages/legal/Legal";
 import newRequest from "./utils/newRequest";
-
+import Categories from "./pages/categories/Categories";
 // Create a ScrollToTop component
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -93,6 +93,11 @@ function App() {
           path: "/",
           element: <Home />,
         },
+        {
+          path: "/categories",
+          element: <Categories />,
+        },
+        ,
         {
           path: "/gigs",
           element: <Gigs />,

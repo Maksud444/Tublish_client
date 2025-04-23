@@ -1,0 +1,255 @@
+.categories-page {
+  padding: 60px 0;
+  background-color: #f5f5f5;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .categories-header {
+    text-align: center;
+    margin-bottom: 40px;
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .category-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-header {
+      padding: 25px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid #eee;
+      background-color: #f9f9f9;
+      text-decoration: none;
+      color: inherit;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #f0f0f0;
+        h2 {
+          color: black;
+        }
+      }
+
+      .icon-container {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f2942e;
+        border-radius: 50%;
+        color: white;
+        flex-shrink: 0;
+        
+        i {
+          font-size: 22px;
+        }
+      }
+
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+      }
+    }
+
+    .subcategories {
+      list-style: none;
+      padding: 20px;
+      margin: 0;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      li {
+        position: relative;
+        padding-left: 15px;
+        
+        &:before {
+          content: "•";
+          position: absolute;
+          left: 0;
+          color: #f2942e;
+          font-size: 18px;
+          line-height: 1;
+        }
+        
+        span {
+          color: #555;
+          font-size: 15px;
+          display: block;
+          padding: 5px 0;
+        }
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 40px 0;
+    
+    .categories-header {
+      margin-bottom: 30px;
+      
+      h1 {
+        font-size: 28px;
+      }
+      
+      p {
+        font-size: 16px;
+      }
+    }
+    
+    .category-card {
+      .category-header {
+        padding: 20px 15px;
+        
+        .icon-container {
+          width: 40px;
+          height: 40px;
+          
+          i {
+            font-size: 18px;
+          }
+        }
+        
+        h2 {
+          font-size: 18px;
+        }
+      }
+      
+      .subcategories {
+        padding: 15px;
+        
+        li span {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  
+  // Dark mode support (optional)
+  @media (prefers-color-scheme: dark) {
+    background-color: #1a1a1a;
+    
+    .categories-header {
+      h1 {
+        color: #f0f0f0;
+      }
+      
+      p {
+        color: #c0c0c0;
+      }
+    }
+    
+    .category-card {
+      background-color: #2a2a2a;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      
+      &:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      
+      .category-header {
+        border-bottom: 1px solid #3a3a3a;
+        background-color: #333;
+        
+        h2 {
+          color: #f0f0f0;
+        }
+      }
+      
+      .subcategories {
+        li span {
+          color: #c0c0c0;
+          
+          &:hover {
+            color: #f2942e;
+          }
+        }
+      }
+    }
+  }
+  
+  // Animation effects
+  .category-card {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Print styles
+  @media print {
+    .categories-page {
+      padding: 0;
+      background-color: white;
+    }
+    
+    .category-card {
+      box-shadow: none;
+      border: 1px solid #ddd;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      
+      &:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+  }
+}

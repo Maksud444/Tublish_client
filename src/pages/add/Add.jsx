@@ -102,12 +102,16 @@ const Add = () => {
 
             <label>Category</label>
             <select name="cat" onChange={handleChange}>
-              <option value="design">Design</option>
-              <option value="web">Web Development</option>
-              <option value="animation">Animation</option>
-              <option value="music">Music</option>
-              <option value="graphics">Graphics & Design</option>
-              <option value="marketing">Digital Marketing</option>
+              <option value="">Select a category</option>
+              <option value="creative">Creative & Design</option>
+              <option value="writing">Writing & Translation</option>
+              <option value="web">Web & Tech</option>
+              <option value="marketing">Marketing & Sales</option>
+              <option value="video">Video & Animation</option>
+              <option value="music">Music & Audio</option>
+              <option value="business">Business & Consulting</option>
+              <option value="education">Education & Training</option>
+              <option value="legal">Legal & Compliance</option>
             </select>
 
             <div className="images">

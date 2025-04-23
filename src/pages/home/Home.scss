@@ -122,16 +122,23 @@
       h1 {
         color: #555;
         text-align: center;
+        margin-bottom: 40px;
       }
 
       .items {
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap: wrap;
+        gap: 20px;
+
+        .item-link {
+          text-decoration: none;
+          color: inherit;
+        }
 
         .item {
-          width: 250px;
+          width: 200px;
           height: 150px;
           display: flex;
           flex-direction: column;
@@ -140,15 +147,41 @@
           justify-content: center;
           text-align: center;
           cursor: pointer;
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+          transition: transform 0.3s, box-shadow 0.3s;
+          padding: 20px;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            
+            .line {
+              width: 80px;
+              background-color: #9381FF;
+            }
+          }
 
           @media (max-width: 768px) {
             width: 100%;
             height: auto;
           }
 
-          img {
-            width: 50px;
-            height: 50px;
+          .icon-container {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            
+            i {
+              font-size: 24px;
+              color: #f2942e;
+            }
           }
 
           .line {
@@ -159,13 +192,21 @@
           }
 
           span {
-            font-weight: 300;
+            font-weight: 500;
+            color: #333;
           }
-
-          &:hover {
-            .line {
-              width: 80px;
-              background-color: #9381FF;
+        }
+        
+        .view-all {
+          .item {
+            background-color: #f2f2f2;
+            
+            .icon-container {
+              background-color: #e6e6e6;
+              
+              i {
+                color: #666;
+              }
             }
           }
         }

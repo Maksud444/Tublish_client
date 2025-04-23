@@ -1,30 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CategoryGrid.scss";
-
-const categories = [
-  { label: "Programming & Tech", icon: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/programming-tech-thin.56382a2.svg" },
-  { label: "Graphics & Design", icon: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/graphics-design-thin.ff38893.svg" },
-  { label: "Digital Marketing", icon: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/digital-marketing-thin.68edb44.svg" },
-  { label: "Writing & Translation", icon: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/writing-translation-thin.fd3699b.svg" },
-  { label: "Video & Animation", icon: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/video-animation-thin.9d3f24d.svg" },
-  { label: "Music & Audio", icon: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/music-audio-thin.43a9801.svg" },
-  { label: "Business", icon: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/business-thin.885e68e.svg" },
-];
+import { Link } from "react-router-dom";
+import { categoriesData } from "../../data/categories";
 
 const CategoryGrid = () => {
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  const handleCategoryHover = (index) => {
+    setActiveCategory(index);
+  };
+
+  const handleCategoryLeave = () => {
+    setActiveCategory(null);
+  };
+
+  // Function to get the category value based on the category name
+  const getCategoryValue = (categoryName) => {
+    switch(categoryName) {
+      case "Creative & Design": return "creative";
+      case "Writing & Translation": return "writing";
+      case "Web & Tech": return "web";
+      case "Marketing & Sales": return "marketing";
+      case "Video & Animation": return "video";
+      case "Music & Audio": return "music";
+      case "Business & Consulting": return "business";
+      case "Education & Training": return "education";
+      case "Legal & Compliance": return "legal";
+      default: return categoryName.toLowerCase();
+    }
+  };
+
   return (
     <div className="category-section">
       <div className="container">
         <h2 className="section-title">Popular Categories</h2>
         <div className="categoryGrid">
-          {categories.map((cat, index) => (
-            <div className="categoryCard" key={index}>
-              <div className="card-content">
-                <img src={cat.icon} alt={cat.label} />
-                <span>{cat.label}</span>
-              </div>
+          {categoriesData.map((category, index) => (
+            <div 
+              className="category-wrapper" 
+              key={index}
+              onMouseEnter={() => handleCategoryHover(index)}
+              onMouseLeave={handleCategoryLeave}
+            >
+              <Link to={`/gigs?cat=${getCategoryValue(category.name)}`} className="category-link">
+                <div className="categoryCard">
+                  <div className="card-content">
+                    <div className="icon-container">
+                      <i className={category.icon}></i>
+                    </div>
+                    <span className="category-name">{category.name}</span>
+                  </div>
+                </div>
+              </Link>
+              
+              {activeCategory === index && (
+                <div className="subcategory-dropdown">
+                  <ul>
+                    {category.subcategories.map((subcategory, subIndex) => (
+                      <li key={subIndex}>
+                        <span>{subcategory}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           ))}
+        </div>
+        <div className="view-all-container">
+          <Link to="/categories" className="view-all-btn">
+            View All Categories
+          </Link>
         </div>
       </div>
     </div>

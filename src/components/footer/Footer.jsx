@@ -1,22 +1,60 @@
 import React from "react";
 import "./Footer.scss";
 import { Link } from "react-router-dom";
+
 function Footer() {
+  // Function to get the category value based on the category name
+  const getCategoryValue = (categoryName) => {
+    switch(categoryName) {
+      case "Creative & Design": return "creative";
+      case "Writing & Translation": return "writing";
+      case "Web & Tech": return "web";
+      case "Marketing & Sales": return "marketing";
+      case "Video & Animation": return "video";
+      case "Music & Audio": return "music";
+      case "Business & Consulting": return "business";
+      case "Education & Training": return "education";
+      case "Legal & Compliance": return "legal";
+      default: return categoryName.toLowerCase();
+    }
+  };
+
   return (
     <div className="footer">
       <div className="container">
         <div className="top">
           <div className="item">
             <h2>Categories</h2>
-            <span>Creative & Design</span>
-            <span>Writing & Translation</span>
-            <span>Web & Tech</span>
-            <span>Marketing & Sales</span>
-            <span>Video & Animation</span>
-            <span>Music & Audio</span>
-            <span>Business & Consulting</span>
-            <span>Education & Training</span>
-            <span><Link to="/legal" className="footer-link">Legal & Compliance</Link></span>
+            <Link to="/categories" className="footer-link">
+              <span>All Categories</span>
+            </Link>
+            <Link to={`/gigs?cat=${getCategoryValue("Creative & Design")}`} className="footer-link">
+              <span>Creative & Design</span>
+            </Link>
+            <Link to={`/gigs?cat=${getCategoryValue("Writing & Translation")}`} className="footer-link">
+              <span>Writing & Translation</span>
+            </Link>
+            <Link to={`/gigs?cat=${getCategoryValue("Web & Tech")}`} className="footer-link">
+              <span>Web & Tech</span>
+            </Link>
+            <Link to={`/gigs?cat=${getCategoryValue("Marketing & Sales")}`} className="footer-link">
+              <span>Marketing & Sales</span>
+            </Link>
+            <Link to={`/gigs?cat=${getCategoryValue("Video & Animation")}`} className="footer-link">
+              <span>Video & Animation</span>
+            </Link>
+            <Link to={`/gigs?cat=${getCategoryValue("Music & Audio")}`} className="footer-link">
+              <span>Music & Audio</span>
+            </Link>
+            <Link to={`/gigs?cat=${getCategoryValue("Business & Consulting")}`} className="footer-link">
+              <span>Business & Consulting</span>
+            </Link>
+            <Link to={`/gigs?cat=${getCategoryValue("Education & Training")}`} className="footer-link">
+              <span>Education & Training</span>
+            </Link>
+            <Link to={`/gigs?cat=${getCategoryValue("Legal & Compliance")}`} className="footer-link">
+              <span>Legal & Compliance</span>
+            </Link>
           </div>
           <div className="item">
             <h2>About</h2>

@@ -9,10 +9,24 @@ import { cards, projects } from "../../data";
 import FaqSection from "../../components/faq/faqSection";
 import GigList from "../../components/gigList/gigList";
 import CategoryGrid from "../../components/CategoryGrid/CategoryGrid";
+import { Link } from "react-router-dom";
+import { categoriesData } from "../../data/categories";
 
-
-
-
+// Function to get the category value based on the category name
+const getCategoryValue = (categoryName) => {
+  switch(categoryName) {
+    case "Creative & Design": return "creative";
+    case "Writing & Translation": return "writing";
+    case "Web & Tech": return "web";
+    case "Marketing & Sales": return "marketing";
+    case "Video & Animation": return "video";
+    case "Music & Audio": return "music";
+    case "Business & Consulting": return "business";
+    case "Education & Training": return "education";
+    case "Legal & Compliance": return "legal";
+    default: return categoryName.toLowerCase();
+  }
+};
 
 function Home() {
   return (
@@ -74,88 +88,27 @@ function Home() {
         <div className="container">
           <h1>Explore Top Freelance Services on Tupublish</h1>
           <div className="items">
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/graphics-design.d32a2f8.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Creative & Design</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg"
-                alt=""
-              />
-              <div className="line"></div>
-
-              <span>
-                Marketing & Sales</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/writing-translation.32ebe2e.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Writing & Translation</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/video-animation.f0d9d71.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Video & Animation</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/music-audio.320af20.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Music & Audio</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/programming.9362366.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Programming & Tech</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/business.bbdf319.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Business & Consulting</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/lifestyle.745b575.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Lifestyle</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/data.718910f.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Education & Training</span>
-            </div>
-            <div className="item">
-              <img
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/photography.01cf943.svg"
-                alt=""
-              />
-              <div className="line"></div>
-              <span>Legal & Compliance</span>
-            </div>
+            {categoriesData.map((category, index) => (
+              <Link to={`/gigs?cat=${getCategoryValue(category.name)}`} className="item-link" key={index}>
+                <div className="item">
+                  <div className="icon-container">
+                    <i className={category.icon}></i>
+                  </div>
+                  <div className="line"></div>
+                  <span>{category.name}</span>
+                </div>
+              </Link>
+            ))}
+            
+            <Link to="/categories" className="item-link view-all">
+              <div className="item">
+                <div className="icon-container">
+                  <i className="fa-solid fa-th-large"></i>
+                </div>
+                <div className="line"></div>
+                <span>View All Categories</span>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -172,7 +125,7 @@ function Home() {
               <img className="icon" src="./img\add-user.png" alt="" />
             </div>
             <h3>Create Account</h3>
-            <p>It’s very easy to open an account and start your journey.</p>
+            <p>It's very easy to open an account and start your journey.</p>
           </div>
           <div className="step">
             <div className="icon">  

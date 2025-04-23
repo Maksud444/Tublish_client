@@ -31,6 +31,15 @@ import Privacy from "./pages/privacy/Privacy";
 import Legal from "./pages/legal/Legal";
 import newRequest from "./utils/newRequest";
 import Categories from "./pages/categories/Categories";
+import About from "./pages/about/About";
+import Press from "./pages/press/Press";
+import IntellectualProperty from "./pages/intellectual-property/IntellectualProperty";
+import InvestorRelations from "./pages/investor-relations/InvestorRelations";
+import HelpSupport from "./pages/help-support/HelpSupport";
+import TrustSafety from "./pages/trust-safety/TrustSafety";
+import Selling from "./pages/selling/Selling";
+import Buying from "./pages/buying/Buying";
+
 // Create a ScrollToTop component
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -165,6 +174,38 @@ function App() {
         {
           path: "/legal",
           element: <Legal />,
+        },
+        {
+          path: "/about",
+          element: <About />,
+        },
+        {
+          path: "/press",
+          element: <Press />,
+        },
+        {
+          path: "/intellectual-property",
+          element: <IntellectualProperty />,
+        },
+        {
+          path: "/investor-relations",
+          element: <InvestorRelations />,
+        },
+        {
+          path: "/help-support",
+          element: <HelpSupport />,
+        },
+        {
+          path: "/trust-safety",
+          element: <TrustSafety />,
+        },
+        {
+          path: "/selling",
+          element: <Selling />,
+        },
+        {
+          path: "/buying",
+          element: <Buying />,
         },
       ],
     },

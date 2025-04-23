@@ -6,8 +6,13 @@ function Featured() {
   const [input, setInput] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    navigate(`/gigs?search=${input}`);
+  const handleSearch = (searchTerm) => {
+    navigate(`/gigs?search=${encodeURIComponent(searchTerm)}`);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/gigs?search=${encodeURIComponent(input)}`);
   };
   
   return (
@@ -15,14 +20,14 @@ function Featured() {
       <div className="overlay">
         <div className="container">
           <h1 className="title">Freelancing marketplace for Africa</h1>
-          <div className="searchBox">
+          <form className="searchBox" onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Search for any service..."
               className="searchInput"
               onChange={(e) => setInput(e.target.value)}
             />
-            <button onClick={handleSubmit} className="searchButton">
+            <button type="submit" className="searchButton">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -38,13 +43,13 @@ function Featured() {
                 />
               </svg>
             </button>
-          </div>
+          </form>
           <div className="popular">
             <div className="popular-buttons">
-              <button>website development →</button>
-              <button>logo design →</button>
-              <button>video editing →</button>
-              <button>architecture & interior design →</button>
+            <button onClick={() => handleSearch("website development")}>website development →</button>
+            <button onClick={() => handleSearch("logo design")}>logo design →</button>
+            <button onClick={() => handleSearch("video editing")}>video editing →</button>
+            <button onClick={() => handleSearch("architecture & interior design")}>architecture & interior design →</button>
             </div>
           </div>
         </div>

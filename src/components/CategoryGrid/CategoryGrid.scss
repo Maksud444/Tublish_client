@@ -33,6 +33,12 @@
 
   .category-wrapper {
     position: relative;
+    
+    &:hover .subcategory-dropdown {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .category-link {
@@ -96,6 +102,10 @@
     z-index: 10;
     padding: 15px;
     margin-top: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
     
     ul {
       list-style: none;

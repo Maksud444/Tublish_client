@@ -58,25 +58,41 @@ function Footer() {
           </div>
           <div className="item">
             <h2>About</h2>
-            <span>About Us</span>
+            <Link to="/about" className="footer-link">
+              <span>About Us</span>
+            </Link>
             <span>How it Works</span>
             <span><Link to="/partnerships" className="footer-link">Partnerships</Link></span>
             <span>Careers</span>
-            <span>Press</span>
+            <Link to="/press" className="footer-link">
+              <span>Press</span>
+            </Link>
             <span><Link to="/privacy" className="footer-link">Privacy Policy</Link></span>
             <Link to="/terms" className="footer-link">
-            <span>Terms of Service</span>
+              <span>Terms of Service</span>
             </Link>
-            <span>Intellectual Property Claims</span>
-            <span>Investor Relations</span>
+            <Link to="/intellectual-property" className="footer-link">
+              <span>Intellectual Property Claims</span>
+            </Link>
+            <Link to="/investor-relations" className="footer-link">
+              <span>Investor Relations</span>
+            </Link>
             <span>Contact Sales</span>
           </div>
           <div className="item">
             <h2>Support</h2>
-            <span>Help & Support</span>
-            <span>Trust & Safety</span>
-            <span>Selling on Tupublish</span>
-            <span>Buying on Tupublish</span>
+            <Link to="/help-support" className="footer-link">
+              <span>Help & Support</span>
+            </Link>
+            <Link to="/trust-safety" className="footer-link">
+              <span>Trust & Safety</span>
+            </Link>
+            <Link to="/selling" className="footer-link">
+              <span>Selling on Tupublish</span>
+            </Link>
+            <Link to="/buying" className="footer-link">
+              <span>Buying on Tupublish</span>
+            </Link>
           </div>
           <div className="item">
        <h2>Explore</h2>
@@ -102,11 +118,21 @@ function Footer() {
           </div>
           <div className="right">
             <div className="social">
-              <img src="/img/twitter.png" alt="" />
-              <img src="/img/facebook.png" alt="" />
-              <img src="/img/linkedin.png" alt="" />
-              <img src="/img/pinterest.png" alt="" />
-              <img src="/img/instagram.png" alt="" />
+              <a href="https://x.com/tupublish182636?s=11" target="_blank" rel="noopener noreferrer">
+                <img src="/img/twitter.png" alt="Twitter/X" />
+              </a>
+              <a href="https://www.facebook.com/share/15HUXbxek5/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                <img src="/img/facebook.png" alt="Facebook" />
+              </a>
+              <a href="https://www.linkedin.com/company/tupublish/" target="_blank" rel="noopener noreferrer">
+                <img src="/img/linkedin.png" alt="LinkedIn" />
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer">
+                <img src="/img/pinterest.png" alt="Pinterest" />
+              </a>
+              <a href="https://www.instagram.com/tupublish?igsh=MXhsbHk1Zm1kaDh2NA==&utm_source=ig_contact_invite" target="_blank" rel="noopener noreferrer">
+                <img src="/img/instagram.png" alt="Instagram" />
+              </a>
             </div>
             <div className="right-link">
             <div className="link">

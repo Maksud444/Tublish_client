@@ -1,19 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./CategoryGrid.scss";
 import { Link } from "react-router-dom";
 import { categoriesData } from "../../data/categories";
 
 const CategoryGrid = () => {
-  const [activeCategory, setActiveCategory] = useState(null);
-
-  const handleCategoryHover = (index) => {
-    setActiveCategory(index);
-  };
-
-  const handleCategoryLeave = () => {
-    setActiveCategory(null);
-  };
-
   // Function to get the category value based on the category name
   const getCategoryValue = (categoryName) => {
     switch(categoryName) {
@@ -36,12 +26,7 @@ const CategoryGrid = () => {
         <h2 className="section-title">Popular Categories</h2>
         <div className="categoryGrid">
           {categoriesData.map((category, index) => (
-            <div 
-              className="category-wrapper" 
-              key={index}
-              onMouseEnter={() => handleCategoryHover(index)}
-              onMouseLeave={handleCategoryLeave}
-            >
+            <div className="category-wrapper" key={index}>
               <Link to={`/gigs?cat=${getCategoryValue(category.name)}`} className="category-link">
                 <div className="categoryCard">
                   <div className="card-content">
@@ -53,17 +38,15 @@ const CategoryGrid = () => {
                 </div>
               </Link>
               
-              {activeCategory === index && (
-                <div className="subcategory-dropdown">
-                  <ul>
-                    {category.subcategories.map((subcategory, subIndex) => (
-                      <li key={subIndex}>
-                        <span>{subcategory}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <div className="subcategory-dropdown">
+                <ul>
+                  {category.subcategories.map((subcategory, subIndex) => (
+                    <li key={subIndex}>
+                      <span>{subcategory}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>

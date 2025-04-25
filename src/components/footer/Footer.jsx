@@ -113,7 +113,10 @@ function Footer() {
         <hr />
         <div className="bottom">
           <div className="left">
-            <h2>Tupublish</h2>
+          <Link to="/" className="link"><img src="/logo.png" style={{
+             width:220,
+             height:40
+          }} /></Link>
             <span>© Tupublish International Ltd. 2025</span>
           </div>
           <div className="right">

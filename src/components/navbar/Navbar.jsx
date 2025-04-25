@@ -32,12 +32,15 @@ function Navbar() {
     localStorage.removeItem("currentUser");
     navigate("/");
   };
-console.log(currentUser);
+
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
-      <div className="container">
+      <div className="container" style={{paddingTop:10,paddingBottom:10}}>
         <div className="logo">
-          <Link to="/" className="link"><span className="text">Tupublish</span></Link>
+          <Link to="/" className="link"><img src="/logo.png" style={{
+             width:220,
+             height:40
+          }} /></Link>
         </div>
         <Link className="allGig" to="/gigs">
             <span className="text">All Gigs</span>
@@ -69,6 +72,11 @@ console.log(currentUser);
                   {currentUser.isSeller && (
                     <Link to="/add" className="dropdown-link">
                       <FaTools /> Add Gigs
+                    </Link>
+                  )}
+                  {currentUser.isAdmin && (
+                    <Link to="/admin" className="dropdown-link">
+                      <FaTools /> Admin Dashboard
                     </Link>
                   )}
                   <hr />

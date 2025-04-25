@@ -5,13 +5,16 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { FaLock, FaCheckCircle, FaExclamationTriangle, FaSpinner } from "react-icons/fa";
+import "./CheckoutForm.scss";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ orderId }) => {
   const stripe = useStripe();
   const elements = useElements();
 
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
+  const [messageType, setMessageType] = useState(null); // 'success', 'error', or 'info'
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -30,16 +33,20 @@ const CheckoutForm = () => {
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case "succeeded":
-          setMessage("Payment succeeded!");
+          setMessage("Payment succeeded! You will be redirected to your orders.");
+          setMessageType("success");
           break;
         case "processing":
-          setMessage("Your payment is processing.");
+          setMessage("Your payment is processing. Please wait a moment.");
+          setMessageType("info");
           break;
         case "requires_payment_method":
           setMessage("Your payment was not successful, please try again.");
+          setMessageType("error");
           break;
         default:
-          setMessage("Something went wrong.");
+          setMessage("Something went wrong with your payment.");
+          setMessageType("error");
           break;
       }
     });
@@ -55,6 +62,7 @@ const CheckoutForm = () => {
     }
 
     setIsLoading(true);
+    setMessage(null);
 
     const { error } = await stripe.confirmPayment({
       elements,
@@ -71,8 +79,10 @@ const CheckoutForm = () => {
     // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
+      setMessageType("error");
     } else {
-      setMessage("An unexpected error occurred.");
+      setMessage("An unexpected error occurred. Please try again.");
+      setMessageType("error");
     }
 
     setIsLoading(false);
@@ -84,18 +94,57 @@ const CheckoutForm = () => {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-      <LinkAuthenticationElement
-        id="link-authentication-element"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
+      <div className="form-section">
+        <h3 className="section-title">Your Email</h3>
+        <p className="section-description">
+          We'll send your receipt to this email address.
+        </p>
+        <LinkAuthenticationElement
+          id="link-authentication-element"
+          onChange={(e) => setEmail(e.target.value)}
+          className="authentication-element"
+        />
+      </div>
+      
+      <div className="form-section">
+        <h3 className="section-title">Payment Method</h3>
+        <p className="section-description">
+          All transactions are secure and encrypted.
+        </p>
+        <PaymentElement id="payment-element" options={paymentElementOptions} />
+      </div>
+      
+      <button 
+        disabled={isLoading || !stripe || !elements} 
+        id="submit"
+        className={`pay-button ${isLoading ? 'processing' : ''}`}
+      >
+        {isLoading ? (
+          <>
+            <FaSpinner className="spinner-icon" />
+            Processing...
+          </>
+        ) : (
+          <>
+            <FaLock />
+            Pay Now
+          </>
+        )}
       </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      
+      {message && (
+        <div id="payment-message" className={`message ${messageType}`}>
+          {messageType === "success" && <FaCheckCircle className="message-icon" />}
+          {messageType === "error" && <FaExclamationTriangle className="message-icon" />}
+          {messageType === "info" && <FaSpinner className="spinner-icon message-icon" />}
+          {message}
+        </div>
+      )}
+      
+      <div className="secure-payment-note">
+        <FaLock className="lock-icon" />
+        <span>Your payment information is secure and encrypted</span>
+      </div>
     </form>
   );
 };

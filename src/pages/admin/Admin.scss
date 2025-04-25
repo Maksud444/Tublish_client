@@ -1,0 +1,116 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  
+  .admin-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 30px;
+    
+    @media (max-width: 768px) {
+      margin-left: 70px;
+      padding: 20px;
+    }
+    
+    @media (max-width: 576px) {
+      padding: 15px;
+    }
+  }
+}
+
+// Common styles for admin pages
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #333;
+  
+  @media (max-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
+.error {
+  background-color: #fff0f0;
+  color: #e74c3c;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+  
+  tr.selected {
+    background-color: #f0f7ff;
+  }
+  
+  tr:hover:not(.selected) {
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 8px;
+    
+    button {
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      
+      &.view-btn {
+        background-color: #f0f0f0;
+        color: #555;
+        
+        &:hover {
+          background-color: #e0e0e0;
+        }
+      }
+      
+      &.edit-btn {
+        background-color: #e6f7ff;
+        color: #1890ff;
+        
+        &:hover {
+          background-color: #d6f0ff;
+        }
+      }
+      
+      &.delete-btn {
+        background-color: #fff0f0;
+        color: #e74c3c;
+        
+        &:hover {
+          background-color: #ffe0e0;
+        }
+      }
+    }
+  }
+} 

@@ -250,3 +250,17 @@
     }
   }
 }
+
+.admin-feature {
+  background-color: #f0f7ff;
+  border-left: 4px solid #1890ff;
+  
+  h3 {
+    color: #1890ff;
+  }
+  
+  &:hover {
+    background-color: #e6f7ff;
+    transform: translateY(-5px);
+  }
+}

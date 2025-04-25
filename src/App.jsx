@@ -39,7 +39,13 @@ import HelpSupport from "./pages/help-support/HelpSupport";
 import TrustSafety from "./pages/trust-safety/TrustSafety";
 import Selling from "./pages/selling/Selling";
 import Buying from "./pages/buying/Buying";
-
+import AdminRoute from "./components/adminRoute/AdminRoute.jsx";
+import AdminLayout from "./pages/admin/AdminLayout.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import AdminUsers from "./pages/admin/AdminUsers.jsx";
+import AdminGigs from "./pages/admin/AdminGigs.jsx";
+import AdminOrders from "./pages/admin/AdminOrders.jsx";
+import AdminReviews from "./pages/admin/AdminReviews.jsx";
 // Create a ScrollToTop component
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -95,6 +101,37 @@ function App() {
 
   const router = createBrowserRouter([
     {
+      path: "/admin",
+      element: (
+        <AdminRoute>
+          <AdminLayout />
+        </AdminRoute>
+      ),
+      children: [
+        {
+          path: "",
+          element: <AdminDashboard />,
+        },
+        {
+          path: "users",
+          element: <AdminUsers />,
+        },
+        {
+          path: "gigs",
+          element: <AdminGigs />,
+        },
+        {
+          path: "orders",
+          element: <AdminOrders />,
+        },
+        {
+          path: "reviews",
+          element: <AdminReviews />,
+        },
+      ],
+    },
+    {
+      
       path: "/",
       element: <Layout />,
       children: [

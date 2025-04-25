@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const newRequest = axios.create({
-  baseURL: "https://api.tupublish.com/api", 
-  // baseURL: "http://localhost:3000/api",
+  // baseURL: "https://api.tupublish.com/api", 
+  baseURL: "http://localhost:3000/api",
   // baseURL: "https://testingproject-bay.vercel.app/api", 
   withCredentials: true, // Include cookies if needed
 });

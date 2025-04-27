@@ -39,13 +39,15 @@ const CategoryGrid = () => {
               </Link>
               
               <div className="subcategory-dropdown">
-                <ul>
-                  {category.subcategories.map((subcategory, subIndex) => (
-                    <li key={subIndex}>
-                      <span>{subcategory}</span>
-                    </li>
-                  ))}
-                </ul>
+                            <ul>
+  {category.subcategories.map((subcategory, subIndex) => (
+    <li key={subIndex}>
+      <Link to={`/gigs?cat=${getCategoryValue(category.name)}`} className="category-link">
+        <span>{subcategory}</span>
+      </Link>
+    </li>
+  ))}
+</ul>
               </div>
             </div>
           ))}

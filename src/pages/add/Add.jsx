@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest.js";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
+import { categoriesData } from "../../data/categories";
 
 const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
@@ -18,6 +19,14 @@ const Add = () => {
     dispatch({
       type: "CHANGE_INPUT",
       payload: { name: e.target.name, value: e.target.value },
+    });
+  };
+
+  const handleCategoryChange = (e) => {
+    const [category, subcategory] = e.target.value.split(" - ");
+    dispatch({
+      type: "SET_CATEGORY",
+      payload: { category, subcategory: subcategory.toLowerCase().replace(/\s+/g, "-") },
     });
   };
 
@@ -68,7 +77,6 @@ const Add = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Auto-trigger upload if not done
     if (!state.cover) {
       await handleUpload();
     }
@@ -78,7 +86,11 @@ const Add = () => {
       return;
     }
 
-    console.log("Submitting gig:", state);
+    if (!state.subcategory) {
+      alert("Please select both a category and subcategory.");
+      return;
+    }
+
     mutation.mutate(state, {
       onSuccess: () => {
         navigate("/mygigs");
@@ -101,17 +113,24 @@ const Add = () => {
             />
 
             <label>Category</label>
-            <select name="cat" onChange={handleChange}>
-              <option value="">Select a category</option>
-              <option value="creative">Creative & Design</option>
-              <option value="writing">Writing & Translation</option>
-              <option value="web">Web & Tech</option>
-              <option value="marketing">Marketing & Sales</option>
-              <option value="video">Video & Animation</option>
-              <option value="music">Music & Audio</option>
-              <option value="business">Business & Consulting</option>
-              <option value="education">Education & Training</option>
-              <option value="legal">Legal & Compliance</option>
+            <select 
+              name="category" 
+              onChange={handleCategoryChange}
+              value={`${state.cat} - ${state.subcategory}`}
+            >
+              <option value="">Select a category and subcategory</option>
+              {categoriesData.map((category) => (
+                <optgroup key={category.name} label={category.name}>
+                  {category.subcategories.map((subcategory) => (
+                    <option 
+                      key={`${category.name}-${subcategory}`}
+                      value={`${category.name} - ${subcategory}`}
+                    >
+                      {subcategory}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
             </select>
 
             <div className="images">
@@ -143,7 +162,7 @@ const Add = () => {
               <button 
                 onClick={handleUpload} 
                 className="upload-btn"
-                disabled={uploading}
+                disabled={uploading || !singleFile}
               >
                 {uploading ? <Loader size="small" text="" /> : "Upload"}
               </button>
@@ -176,14 +195,24 @@ const Add = () => {
             ></textarea>
 
             <label>Delivery Time (e.g. 3 days)</label>
-            <input type="number" name="deliveryTime" onChange={handleChange} />
+            <input 
+              type="number" 
+              name="deliveryTime" 
+              onChange={handleChange} 
+              min="1"
+            />
 
             <label>Revision Number</label>
-            <input type="number" name="revisionNumber" onChange={handleChange} />
+            <input 
+              type="number" 
+              name="revisionNumber" 
+              onChange={handleChange} 
+              min="0"
+            />
 
             <label>Add Features</label>
             <form className="add" onSubmit={handleFeature}>
-              <input type="text" placeholder="e.g. page design" />
+              <input type="text" placeholder="e.g. page design" required />
               <button type="submit">Add</button>
             </form>
 
@@ -203,9 +232,20 @@ const Add = () => {
             </div>
 
             <label>Price</label>
-            <input type="number" name="price" onChange={handleChange} />
+            <input 
+              type="number" 
+              name="price" 
+              onChange={handleChange} 
+              min="1"
+            />
             
-            <button onClick={handleSubmit} className="create-btn">Create</button>
+            <button 
+              onClick={handleSubmit} 
+              className="create-btn"
+              disabled={mutation.isLoading}
+            >
+              {mutation.isLoading ? <Loader size="small" text="" /> : "Create"}
+            </button>
           </div>
         </div>
       </div>

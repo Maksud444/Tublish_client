@@ -7,6 +7,15 @@
     margin: 0 auto;
     padding: 0 20px;
   }
+  .subcategory-link{
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #f2942e;
+    }
+  }
 
   .categories-header {
     text-align: center;
